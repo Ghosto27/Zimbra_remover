@@ -14,6 +14,7 @@ for victim in "${addr[@]}";
         for msg in `zmmailbox -z -m "$victim" s -l 500 -t message "From:$subject"|awk '{ if (NR!=1) {print}}' | grep -v -e Id -e "-" -e "^$" | awk '{ print $2 }'`
           do
         echo "Found "$msg""
+        #you can comment next line (#) for ONLY check mails, without deleting
         zmmailbox -z -m $victim dm $msg
         done
 done
